@@ -19,6 +19,7 @@ const ModalC: React.FC<ModalCProps> = ({ show, onHide, contact }) => {
         </p>
         <p>Email: {contact.email || "N/A"}</p>
         <p>Phone Number: {contact.phone_number || "N/A"}</p>
+        <p>Country Id: {contact.country_id || "N/A"}</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>

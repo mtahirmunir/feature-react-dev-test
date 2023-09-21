@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  Modal,
-  Form,
-  FormControl,
-  Spinner,
-} from "react-bootstrap";
+import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import ModalA from "../modals/ModalA";
 import ModalB from "../modals/ModalB";
 

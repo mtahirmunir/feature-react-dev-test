@@ -32,24 +32,25 @@ const ModalA: React.FC<ModalAProps> = ({ show, onHide, onlyEven }) => {
       setLoading(true);
       const response = await axios.get(API_URL, {
         headers: {
-          Authorization: API_TOKEN,
+          Authorization: `Bearer ${API_TOKEN}`,
         },
         params: {
           companyId: 560,
           query: searchTerm,
           page,
-          countryId: onlyEven ? 226 : undefined,
           noGroupDuplicates: 1,
         },
       });
-
       const { total, contacts_ids, contacts: contactsData } = response.data;
 
       const newContacts: Contact[] = contacts_ids.map(
         (contactId: number) => contactsData[contactId]
       );
-
-      setContacts([...contacts, ...newContacts]);
+      const filteredContacts = onlyEven
+        ? newContacts.filter((contact) => contact.id % 2 === 0)
+        : newContacts;
+      setContacts(filteredContacts);
+      //setContacts([...contacts, ...newContacts]);
       setHasMore(contacts.length < total);
       setLoading(false);
     } catch (error) {
