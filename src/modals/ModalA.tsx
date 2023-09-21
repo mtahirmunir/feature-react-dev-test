@@ -104,11 +104,29 @@ const ModalA: React.FC<ModalAProps> = ({ show, onHide, onlyEven }) => {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           {/* Render contact list */}
-          {contacts.map((contact, index) => (
-            <div key={index} onClick={() => openModalC(contact)}>
-              {contact.first_name} {contact.last_name}
-            </div>
-          ))}
+          {contacts.length > 0 ? (
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {contacts.map((contact, index) => (
+                  <tr key={index} onClick={() => openModalC(contact)}>
+                    <td>{contact.id}</td>
+                    <td>{contact.first_name}</td>
+                    <td>{contact.last_name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>No contacts to display.</p>
+          )}
+
           {loading && <Spinner animation="border" />}
         </Modal.Body>
       </Modal>
